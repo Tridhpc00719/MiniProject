@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="logo-details">
+            <i class="fab fa-battle-net"></i>
+            <span class="logo_name">MINI STORE</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="/home/index" class="active">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Home</span>
+                </a>
+            </li>
+            <th:block th:unless="${#request.remoteUser}">
+	            <li>
+	            	<a th:href="@{/security/login/form}">
+		                <i class="fas fa-user"></i>
+		                <span class="links_name">Login</span>
+		            </a>
+		        </li>
+            </th:block>
+            <th:block th:if="${#request.remoteUser}">
+            	<li>
+	            	<a href="">
+		                <i class="fas fa-user"></i>
+		                <span class="links_name"> [[${#request.remoteUser}]] </span>
+		            </a>
+		        </li>
+            </th:block>
+            <li th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('PM')}">
+				<a th:href="@{/admin/home/index}">
+                    <i class="fas fa-paste"></i>
+                    <span class="links_name">Admin page</span>
+                </a>
+			</li>
+            
+            <li class="log_out">
+                <a th:href="@{/security/logoff}">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+</body>
+</html>

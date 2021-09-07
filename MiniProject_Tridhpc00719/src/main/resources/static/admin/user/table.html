@@ -1,0 +1,53 @@
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">User List</h3>
+	</div>
+	<div class="panel-body">
+
+		<table class="table table-condensed ">
+			<thead class="bg-success">
+				<tr>
+					<th>Fullname</th>
+					<th>Email</th>
+					<th>Photo</th>
+					<th>address</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in pager.items">
+					<td>{{item.fullname}}</td>
+					<td>{{item.email}}</td>
+					<td>{{item.photo}}</td>
+					<td>{{item.address}}</td>
+					<td>
+						<div class="btn-group btn-group-xs ">
+							<button ng-click="edit(item)" class="btn  btn-warning glyphicon glyphicon-edit ">Edit</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+	<div class="panel-footer text-center">
+
+		<button ng-click="pager.first()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-up"></b>
+		</button>
+		<button ng-click="pager.prev()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-left"></b>
+		</button>
+		<button class="btn btn-success">{{pager.page +1}} of {{pager.count}}</button>
+		<button ng-click="pager.next()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-right"></b>
+		</button>
+		<button ng-click="pager.last()" class="btn btn-primary">
+			<b class="glyphicon glyphicon-hand-down"></b>
+		</button>
+
+
+	</div>
+</div>

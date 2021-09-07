@@ -1,0 +1,81 @@
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Panel title</h3>
+	</div>
+	<div class="panel-body">
+
+		<div class="row">
+			<div class="col-sm-4 text-center">
+				<label for="image"> <img ng-src="{{'/images/' + form.image}}" style="max-width: 100%;height: 250px;">
+				</label>
+			</div>
+		</div>
+		<div class="col-sm-8"></div>
+		<div class="row">
+			<div class="form-group col-sm-6">
+				<div>Name</div>
+				<input type="text" ng-model="form.name" class="form-control">
+			</div>
+			<div class="form-group col-sm-6">
+				<div>Price</div>
+				<input type="text" ng-model="form.price" class="form-control">
+			</div>
+			<div class="form-group col-sm-6">
+				<div>Image</div>
+				<input onchange="angular.element(this).scope().imageChanged(this.files)" type="file" class="form-control" id="image">
+			</div>
+			<div class="form-group col-sm-6">
+				<div>CreateDate</div>
+				<input type="date" ng-model="form.createDate" class="form-control">
+			</div>
+			<div class="form-group col-sm-6">
+				<div>Category</div>
+				<select ng-model="form.category.id" class="form-control" required="required">
+					<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
+				</select>
+
+			</div>
+            
+		</div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+				<div>Avaiables?</div>
+				<div class="form-control">
+                    <label class="radio-inline">
+                        <input ng-model="form.available" type="radio" name="available" ng-value="true"> Yes
+                    </label>
+                    <label class="radio-inline">
+                        <input ng-model="form.available" type="radio" name="available" ng-value="false">No
+                    </label>
+                </div>
+			</div>
+        </div>
+        
+
+	</div>
+    
+    <div class="panel-footer text-center">
+        
+        <button ng-click="create()" class="btn btn-primary">
+            <b class="glyphicon glyphicon-plus">Create</b>
+        </button>
+        <button ng-click="update()" class="btn btn-success">
+            <b class="glyphicon glyphicon-save">Update</b>
+        </button>
+        <button ng-click="delete(form)" class="btn btn-danger">
+            <b class="glyphicon glyphicon-trash">Detele</b>
+        </button>
+        <button ng-click="reset()" class="btn btn-info">
+            <b class="glyphicon glyphicon-refresh">Reset</b>
+        </button>
+        
+        
+    </div>
+    
+</div>
+</div>
+
+
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title> HOME ADMIN </title>
+<link rel="stylesheet" href="/CSS/styleAD.css">
+<link rel="stylesheet" href="/CSS/card.css">
+<!-- Boxicons CDN Link -->
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--ANGULAR-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<!-- Router -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+</head>
+
+<body ng-app="admin-app">
+	<div class="sidebar close1">
+		<div class="logo-details">
+			<i class="fab fa-battle-net"></i> <span class="logo_name">MINI STORE</span>
+		</div>
+		<ul class="nav-links">
+			<li>
+				<a href="#!account" class="active"> 
+					<i class="fas fa-users"></i> 
+					<span class="links_name">Account setting</span>
+				</a>
+			</li>
+			<li>
+				<a href="#!authorize"> 
+					<i class="fas fa-users"></i> 
+					<span class="links_name">Role setting</span>
+				</a>
+			</li>
+			<li th:if="${#request.remoteUser or #request.isUserInRole('STAF')}">
+				<a href="#!user"> 
+					<i class="fas fa-user"></i> 
+					<span class="links_name">User profile</span>
+				</a>
+			</li>
+			<li class="log_out">
+				<a href="/security/logoff"> 
+					<i class='bx bx-log-out'></i>
+					<span class="links_name">Log out</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<section class="home-section">
+		<nav>
+			<div class="sidebar-button">
+				<i class='bx bx-menu sidebarBtn'></i> <span class="dashboard"> ADMIN PAGE </span>
+			</div>
+			<div class="search-box">
+				<input type="text" placeholder="Search..."> <i
+					class='bx bx-search'></i>
+			</div>
+		</nav>
+
+		<div class="home-content">
+			<main>
+				<div ng-view></div>
+			</main>
+		</div>
+		<footer>
+			<div th:replace="../UI/footer.html"></div>
+		</footer>
+	</section>
+	
+	
+	<script src="/admin/admin-app.js" type="text/javascript"></script>
+	<script src="/admin/account/account-ctrl.js" type="text/javascript"></script>
+	<script src="/admin/user/user-ctrl.js" type="text/javascript"></script>
+	<script src="/admin/authority/authority-ctrl.js" type="text/javascript"></script>
+	<script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+
+        // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+        // sidebar open close js code
+        let navLinks = document.querySelector(".nav-links");
+        let menuOpenBtn = document.querySelector(".navbar .bx-menu");
+        let menuCloseBtn = document.querySelector(".nav-links .bx-x");
+        menuOpenBtn.onclick = function () {
+            navLinks.style.left = "0";
+        }
+        menuCloseBtn.onclick = function () {
+            navLinks.style.left = "-100%";
+        }
+
+
+        // sidebar submenu open close js code
+        let htmlcssArrow = document.querySelector(".htmlcss-arrow");
+        htmlcssArrow.onclick = function () {
+            navLinks.classList.toggle("show1");
+        }
+        let moreArrow = document.querySelector(".more-arrow");
+        moreArrow.onclick = function () {
+            navLinks.classList.toggle("show2");
+        }
+        let jsArrow = document.querySelector(".js-arrow");
+        jsArrow.onclick = function () {
+            navLinks.classList.toggle("show3");
+        }
+
+        // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+        let arrow2 = document.querySelectorAll(".arrow2");
+        for (var i = 0; i < arrow2.length; i++) {
+            arrow2[i].addEventListener("click", (e) => {
+                let arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+                arrowParent.classList.toggle("showMenu");
+            });
+        }
+
+     	// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    </script>
+
+</body>
+
+</html>
